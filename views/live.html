@@ -16,12 +16,13 @@
     <div id="events"></div>
     <script>
       // Dynamically set the WebSocket URL based on the current location
-      const socket = new WebSocket(`ws://${window.location.host}`);
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const socket = new WebSocket(`${protocol}//${window.location.host}`);
 
       socket.onmessage = function(event) {
         const eventsDiv = document.getElementById('events');
         const newEvent = document.createElement('div');
-        newEvent.textContent = `Tag Data: ${event.data}`;
+        newEvent.textContent = `New Tag Data: ${event.data}`;
         eventsDiv.appendChild(newEvent);
       };
 

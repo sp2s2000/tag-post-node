@@ -5,11 +5,6 @@ const WebSocket = require('ws');
 
 let wss;
 
-// Function to set WebSocket server
-function setWss(webSocketServer) {
-  wss = webSocketServer;
-}
-
 router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/index.html'));
 });
