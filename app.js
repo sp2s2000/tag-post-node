@@ -1,9 +1,20 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const basicAuth = require('express-basic-auth');
 const path = require('path');
 const indexRouter = require('./routes/index');
 
 const app = express();
 const PORT = 3000;
+
+// Allow the app to accept JSON data
+app.use(bodyParser.json());
+
+// Basic Auth middleware
+app.use(basicAuth({
+  users: { 'admin': 'supersecret' },
+  challenge: true // This will prompt the browser to show the basic auth dialog
+}));
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
