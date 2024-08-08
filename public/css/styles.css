@@ -13,16 +13,18 @@ html {
   
   .row {
     display: table-row;
-    height: 75%;
-    background-color: #282828;
+    height: 25%;
+    background-color: #FFF;
     text-align: center;
   }
   
   .h1 {
     font-size: 54px;
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to right, #FFFFFF 0%, #FF6600 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #000;
     padding-top: 100px;
+  }
+
+  .view-container {
+    padding: 25px 0px 0px 25px;
   }
