@@ -32,4 +32,4 @@ BASIC_AUTH_PASSWORD=supersecret
 
 #### Quick Deployment on Railway.app for testing
 You may fork this template and deploy on Railway quickly:
-- [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/naLkNn?referralCode=zEKVel)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/naLkNn?referralCode=zEKVel)
