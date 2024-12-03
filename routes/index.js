@@ -36,13 +36,19 @@ router.post('/tag-data-save', async (req, res) => {
   try {
     console.log(req.body);
     // Notify all connected clients about the new tag data
-    const newBatch = new BatchTagData({
-      records: req.body,
-    })
-    await newBatch.save();
-    res.status(200).json({
-      message: 'Tag data saved',
-    });
+    if (req.body && Array.isArray(req.body)) {
+      const newBatch = new BatchTagData({
+        records: req.body,
+      })
+      await newBatch.save();
+      res.status(200).json({
+        message: 'Tag data saved',
+      });
+    } else {
+      res.status(400).json({
+        message: 'Invalid data format',
+      });
+    }
   } catch (error) {
     console.log('Error saving tag data', error);
   }
