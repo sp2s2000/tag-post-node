@@ -10,6 +10,11 @@ const connectMongo = require('./db/index');
 dotenv.config();
 
 const app = express();
+
+// Increase the payload size limit
+app.use(bodyParser.json({ limit: '100mb' })); // Adjust the limit as per your needs
+app.use(bodyParser.urlencoded({ extended: true, limit: '100mb' }));
+
 const PORT = 3000;
 
 // Basic Auth middleware using environment variables
