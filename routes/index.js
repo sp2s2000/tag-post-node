@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const WebSocket = require('ws');
+const BatchTagData = require('../db/schema/tag_data');
 
 let wss;
 
@@ -29,6 +30,22 @@ router.post('/tag-data', (req, res) => {
   res.status(200).json({
     message: 'Tag data received',
   });
+});
+
+router.post('/tag-data-save', async (req, res) => {
+  try {
+    console.log(req.body);
+    // Notify all connected clients about the new tag data
+    const newBatch = new BatchTagData({
+      records: req.body,
+    })
+    await newBatch.save();
+    res.status(200).json({
+      message: 'Tag data saved',
+    });
+  } catch (error) {
+    console.log('Error saving tag data', error);
+  }
 });
 
 function setupWebSocket(server) {

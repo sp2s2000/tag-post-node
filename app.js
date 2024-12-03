@@ -5,7 +5,7 @@ const { router, setupWebSocket } = require('./routes/index');
 const basicAuth = require('express-basic-auth');
 const http = require('http');
 const dotenv = require('dotenv');
-
+const connectMongo = require('./db/index');
 // Load environment variables from .env file
 dotenv.config();
 
@@ -35,6 +35,15 @@ app.use((req, res, next) => {
 const server = http.createServer(app);
 setupWebSocket(server);
 
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
-});
+const start = async () => {
+  try {
+    await connectMongo();
+    server.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}/`);
+    });
+  } catch (error) {
+    console.error('Error connecting to the database', error);
+  }
+}
+
+start();
