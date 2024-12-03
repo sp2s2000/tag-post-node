@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 const connectMongo = async () => {
   try {
-    const connection = await mongoose.connect(`mongodb+srv://tagpost:test1234@tag-post-node.2r5tb.mongodb.net/${process.env.DB_COLLECTION}`, {
+    const connection = await mongoose.connect(`mongodb+srv://tagpost:test1234@tag-post-node.2r5tb.mongodb.net/tagPostNodeV1`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
